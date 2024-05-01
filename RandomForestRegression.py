@@ -210,7 +210,7 @@ if __name__ == '__main__':
     import pandas as pd
     from sklearn.ensemble import RandomForestRegressor
 
-    df = pd.read_csv("source/housing.txt").fillna(-1)
+    df = pd.read_csv("RandomForest/source/housing.txt").fillna(-1)
     df = df.rename(columns={'MEDV': 'label'})
     clf = RandomForestRegressor(n_estimators=5,
                                 max_depth=5,
