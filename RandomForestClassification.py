@@ -13,7 +13,7 @@ import numpy as np
 import random
 import math
 import collections
-from sklearn.externals.joblib import Parallel, delayed
+from joblib import Parallel, delayed
 
 
 class Tree(object):
