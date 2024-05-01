@@ -12,7 +12,7 @@ import pandas as pd
 import numpy as np
 import random
 import math
-from sklearn.externals.joblib import Parallel, delayed
+from joblib import Parallel, delayed
 
 
 class Tree(object):
@@ -205,21 +205,22 @@ class RandomForestRegression(object):
             res.append(sum(pred_list) * 1.0 / len(pred_list))
         return np.array(res)
 
-
 if __name__ == '__main__':
-    df = pd.read_csv("source/housing.txt").fillna(-1)
+    import pandas as pd
+    from sklearn.ensemble import RandomForestRegressor
+
+    df = pd.read_csv("RandomForest/source/housing.txt").fillna(-1)
     df = df.rename(columns={'MEDV': 'label'})
-    clf = RandomForestRegression(n_estimators=5,
-                                 max_depth=5,
-                                 min_samples_split=50,
-                                 min_samples_leaf=10,
-                                 min_split_gain=0.0,
-                                 colsample_bytree="sqrt",
-                                 subsample=0.8,
-                                 random_state=66)
+    clf = RandomForestRegressor(n_estimators=5,
+                                max_depth=5,
+                                min_samples_split=50,
+                                min_samples_leaf=10,
+                                min_impurity_decrease=0.0,
+                                bootstrap=True,
+                                random_state=66)
     train_count = int(0.7 * len(df))
     feature_list = ["CRIM", "ZN", "INDUS", "CHAS", "NOX", "RM", "AGE", "DIS", "RAD", 
-                    "TAX", "PTRATIO", "B", "LSTAT", "MEDV"]
+                    "TAX", "PTRATIO", "B", "LSTAT"]
     clf.fit(df.loc[:train_count, feature_list], df.loc[:train_count, 'label'])
 
     from sklearn import metrics

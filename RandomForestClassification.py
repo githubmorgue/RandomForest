@@ -13,7 +13,7 @@ import numpy as np
 import random
 import math
 import collections
-from sklearn.externals.joblib import Parallel, delayed
+from joblib import Parallel, delayed
 
 
 class Tree(object):
@@ -218,7 +218,7 @@ class RandomForestClassifier(object):
 
 
 if __name__ == '__main__':
-    df = pd.read_csv("source/wine.txt")
+    df = pd.read_csv("RandomForest/source/wine.txt")
     df = df[df['label'].isin([1, 2])].sample(frac=1, random_state=66).reset_index(drop=True)
     clf = RandomForestClassifier(n_estimators=5,
                                  max_depth=5,
