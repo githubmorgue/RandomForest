@@ -206,6 +206,7 @@ class RandomForestRegression(object):
         return np.array(res)
 
 
+
 if __name__ == '__main__':
     import pandas as pd
     from sklearn.ensemble import RandomForestRegressor
